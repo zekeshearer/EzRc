@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface MABMotionController : NSObject
 
 + (MABMotionController *)instance;
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
 
 @end

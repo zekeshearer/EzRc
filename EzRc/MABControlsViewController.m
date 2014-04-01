@@ -7,9 +7,14 @@
 //
 
 #import "MABControlsViewController.h"
+#import "MABMotionController.h"
 
 @interface MABControlsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *rotationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rollLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pitchLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yawLabel;
+
+@property (nonatomic, assign) BOOL isMotioning;
 
 @end
 
@@ -34,6 +39,31 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)startUpdates
+{
+    if ([[[MABMotionController instance] motionManager] isDeviceMotionAvailable] == YES) {
+        [[[MABMotionController instance] motionManager] startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
+            self.rollLabel.text = [NSString stringWithFormat:@"%f", deviceMotion.attitude.roll];
+            self.pitchLabel.text = [NSString stringWithFormat:@"%f", deviceMotion.attitude.pitch];
+            self.yawLabel.text = [NSString stringWithFormat:@"%f", deviceMotion.attitude.yaw];
+        }];
+    }
+}
+
+- (void)stopUpdates
+{
+    [[[MABMotionController instance] motionManager] stopDeviceMotionUpdates];
+}
+
+- (IBAction)toggleMotionSensing:(id)sender
+{
+    if ( self.isMotioning ) {
+        [self stopUpdates];
+    } else {
+        [self startUpdates];
+    }
 }
 
 @end

@@ -7,11 +7,8 @@
 //
 
 #import "MABMotionController.h"
-#import <CoreMotion/CoreMotion.h>
 
 @interface MABMotionController ()
-
-@property (strong, nonatomic) CMMotionManager *motionManager;
 
 @end
 
@@ -32,10 +29,9 @@
     self = [super init];
     if ( self ) {
         self.motionManager = [[CMMotionManager alloc] init];
+        self.motionManager.deviceMotionUpdateInterval = .05;
     }
     return self;
 }
-
-
 
 @end
