@@ -64,6 +64,7 @@
     } else {
         [self startUpdates];
     }
+    self.isMotioning = !self.isMotioning;
 }
 
 @end
