@@ -19,6 +19,10 @@
 		B33CD52E18EA678200FE212E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33CD51618EA678200FE212E /* UIKit.framework */; };
 		B33CD53618EA678200FE212E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B33CD53418EA678200FE212E /* InfoPlist.strings */; };
 		B33CD53818EA678200FE212E /* EzRcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B33CD53718EA678200FE212E /* EzRcTests.m */; };
+		B33CD54618EA681300FE212E /* MABControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33CD54418EA681300FE212E /* MABControlsViewController.m */; };
+		B33CD54718EA681300FE212E /* MABControlsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33CD54518EA681300FE212E /* MABControlsViewController.xib */; };
+		B33CD54A18EA6B5600FE212E /* MABMotionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33CD54918EA6B5600FE212E /* MABMotionController.m */; };
+		B33CD54C18EA6C4D00FE212E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		B33CD53318EA678200FE212E /* EzRcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EzRcTests-Info.plist"; sourceTree = "<group>"; };
 		B33CD53518EA678200FE212E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B33CD53718EA678200FE212E /* EzRcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzRcTests.m; sourceTree = "<group>"; };
+		B33CD54318EA681300FE212E /* MABControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABControlsViewController.h; sourceTree = "<group>"; };
+		B33CD54418EA681300FE212E /* MABControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABControlsViewController.m; sourceTree = "<group>"; };
+		B33CD54518EA681300FE212E /* MABControlsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MABControlsViewController.xib; sourceTree = "<group>"; };
+		B33CD54818EA6B5600FE212E /* MABMotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABMotionController.h; sourceTree = "<group>"; };
+		B33CD54918EA6B5600FE212E /* MABMotionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABMotionController.m; sourceTree = "<group>"; };
+		B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B33CD54C18EA6C4D00FE212E /* CoreMotion.framework in Frameworks */,
 				B33CD51518EA678200FE212E /* CoreGraphics.framework in Frameworks */,
 				B33CD51718EA678200FE212E /* UIKit.framework in Frameworks */,
 				B33CD51318EA678200FE212E /* Foundation.framework in Frameworks */,
@@ -96,6 +107,7 @@
 		B33CD51118EA678200FE212E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */,
 				B33CD51218EA678200FE212E /* Foundation.framework */,
 				B33CD51418EA678200FE212E /* CoreGraphics.framework */,
 				B33CD51618EA678200FE212E /* UIKit.framework */,
@@ -107,8 +119,8 @@
 		B33CD51818EA678200FE212E /* EzRc */ = {
 			isa = PBXGroup;
 			children = (
-				B33CD52118EA678200FE212E /* MABAppDelegate.h */,
-				B33CD52218EA678200FE212E /* MABAppDelegate.m */,
+				B33CD54218EA67BA00FE212E /* Controllers */,
+				B33CD54118EA67AF00FE212E /* ViewControllers */,
 				B33CD52418EA678200FE212E /* Images.xcassets */,
 				B33CD51918EA678200FE212E /* Supporting Files */,
 			);
@@ -142,6 +154,27 @@
 				B33CD53418EA678200FE212E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B33CD54118EA67AF00FE212E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B33CD54318EA681300FE212E /* MABControlsViewController.h */,
+				B33CD54418EA681300FE212E /* MABControlsViewController.m */,
+				B33CD54518EA681300FE212E /* MABControlsViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B33CD54218EA67BA00FE212E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B33CD52118EA678200FE212E /* MABAppDelegate.h */,
+				B33CD52218EA678200FE212E /* MABAppDelegate.m */,
+				B33CD54818EA6B5600FE212E /* MABMotionController.h */,
+				B33CD54918EA6B5600FE212E /* MABMotionController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +255,7 @@
 			files = (
 				B33CD51D18EA678200FE212E /* InfoPlist.strings in Resources */,
 				B33CD52518EA678200FE212E /* Images.xcassets in Resources */,
+				B33CD54718EA681300FE212E /* MABControlsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +275,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B33CD51F18EA678200FE212E /* main.m in Sources */,
+				B33CD54618EA681300FE212E /* MABControlsViewController.m in Sources */,
+				B33CD54A18EA6B5600FE212E /* MABMotionController.m in Sources */,
 				B33CD52318EA678200FE212E /* MABAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

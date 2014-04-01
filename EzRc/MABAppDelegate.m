@@ -7,6 +7,7 @@
 //
 
 #import "MABAppDelegate.h"
+#import "MABControlsViewController.h"
 
 @implementation MABAppDelegate
 
@@ -14,6 +15,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    MABControlsViewController *controlsViewController;
+    
+    controlsViewController = [[MABControlsViewController alloc] initWithNibName:@"MABControlsViewController" bundle:nil];
+    self.window.rootViewController = controlsViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
