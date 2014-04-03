@@ -9,8 +9,8 @@ const int rightPin = 8;
 void setup() {
   pinMode(fowardPin, OUTPUT);
   pinMode(backwardPin, OUTPUT);
+  pinMode(leftPin, OUTPUT);  
   pinMode(rightPin, OUTPUT);
-  pinMode(leftPin, OUTPUT);
 }
 
 void loop()
