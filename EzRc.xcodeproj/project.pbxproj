@@ -23,6 +23,8 @@
 		B33CD54718EA681300FE212E /* MABControlsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33CD54518EA681300FE212E /* MABControlsViewController.xib */; };
 		B33CD54A18EA6B5600FE212E /* MABMotionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33CD54918EA6B5600FE212E /* MABMotionController.m */; };
 		B33CD54C18EA6C4D00FE212E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */; };
+		B3EA24E818F0F0AB00B857B1 /* MABBluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA24E718F0F0AB00B857B1 /* MABBluetoothController.m */; };
+		B3EA24F018F103F900B857B1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EA24EF18F103F900B857B1 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,10 @@
 		B33CD54818EA6B5600FE212E /* MABMotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABMotionController.h; sourceTree = "<group>"; };
 		B33CD54918EA6B5600FE212E /* MABMotionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABMotionController.m; sourceTree = "<group>"; };
 		B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		B3EA24E618F0F0AB00B857B1 /* MABBluetoothController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABBluetoothController.h; sourceTree = "<group>"; };
+		B3EA24E718F0F0AB00B857B1 /* MABBluetoothController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABBluetoothController.m; sourceTree = "<group>"; };
+		B3EA24ED18F0F10100B857B1 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
+		B3EA24EF18F103F900B857B1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3EA24F018F103F900B857B1 /* CoreBluetooth.framework in Frameworks */,
 				B33CD54C18EA6C4D00FE212E /* CoreMotion.framework in Frameworks */,
 				B33CD51518EA678200FE212E /* CoreGraphics.framework in Frameworks */,
 				B33CD51718EA678200FE212E /* UIKit.framework in Frameworks */,
@@ -88,6 +95,7 @@
 		B33CD50618EA678200FE212E = {
 			isa = PBXGroup;
 			children = (
+				B3EA24E918F0F10100B857B1 /* ThirdParty */,
 				B33CD51818EA678200FE212E /* EzRc */,
 				B33CD53118EA678200FE212E /* EzRcTests */,
 				B33CD51118EA678200FE212E /* Frameworks */,
@@ -107,6 +115,7 @@
 		B33CD51118EA678200FE212E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3EA24EF18F103F900B857B1 /* CoreBluetooth.framework */,
 				B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */,
 				B33CD51218EA678200FE212E /* Foundation.framework */,
 				B33CD51418EA678200FE212E /* CoreGraphics.framework */,
@@ -173,8 +182,27 @@
 				B33CD52218EA678200FE212E /* MABAppDelegate.m */,
 				B33CD54818EA6B5600FE212E /* MABMotionController.h */,
 				B33CD54918EA6B5600FE212E /* MABMotionController.m */,
+				B3EA24E618F0F0AB00B857B1 /* MABBluetoothController.h */,
+				B3EA24E718F0F0AB00B857B1 /* MABBluetoothController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B3EA24E918F0F10100B857B1 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				B3EA24EA18F0F10100B857B1 /* BLE */,
+			);
+			name = ThirdParty;
+			path = EzRc/ThirdParty;
+			sourceTree = "<group>";
+		};
+		B3EA24EA18F0F10100B857B1 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				B3EA24ED18F0F10100B857B1 /* BLEDefines.h */,
+			);
+			path = BLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +305,7 @@
 				B33CD51F18EA678200FE212E /* main.m in Sources */,
 				B33CD54618EA681300FE212E /* MABControlsViewController.m in Sources */,
 				B33CD54A18EA6B5600FE212E /* MABMotionController.m in Sources */,
+				B3EA24E818F0F0AB00B857B1 /* MABBluetoothController.m in Sources */,
 				B33CD52318EA678200FE212E /* MABAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +505,7 @@
 				B33CD53D18EA678200FE212E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33CD53E18EA678200FE212E /* Build configuration list for PBXNativeTarget "EzRcTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +514,7 @@
 				B33CD54018EA678200FE212E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
