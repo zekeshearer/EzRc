@@ -10,7 +10,7 @@
 #import "MABMotionController.h"
 #import "MABBluetoothController.h"
 
-@interface MABControlsViewController ()
+@interface MABControlsViewController ()<MABMotionControllerDelegate>
 
 @property (nonatomic, assign) BOOL isMotioning;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
@@ -41,26 +41,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)startUpdates
-{
-    if ([[[MABMotionController instance] motionManager] isDeviceMotionAvailable] == YES) {
-        [[[MABMotionController instance] motionManager] startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *deviceMotion, NSError *error) {
-
-        }];
-    }
-}
-
-- (void)stopUpdates
-{
-    [[[MABMotionController instance] motionManager] stopDeviceMotionUpdates];
-}
-
 - (IBAction)toggleMotionSensing:(id)sender
 {
     if ( self.isMotioning ) {
-        [self stopUpdates];
+        [[MABMotionController instance] stopUpdates];
     } else {
-        [self startUpdates];
+        [[MABMotionController instance] startUpdates];
+        [MABMotionController instance].delegate = self;
     }
     self.isMotioning = !self.isMotioning;
 }
@@ -74,45 +61,19 @@
     }
 }
 
-//
-//
-//-(IBAction)sendDigitalOut:(id)sender
-//{
-//    UInt8 buf[3] = {0x01, 0x00, 0x00};
-//    
-//    if (swDigitalOut.on)
-//        buf[1] = 0x01;
-//    else
-//        buf[1] = 0x00;
-//    
-//    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-//    [[MABBluetoothController  instance] writeData:data];
-//}
-//
-///* Send command to Arduino to enable analog reading */
-//-(IBAction)sendAnalogIn:(id)sender
-//{
-//    UInt8 buf[3] = {0xA0, 0x00, 0x00};
-//    
-//    if (swAnalogIn.on)
-//        buf[1] = 0x01;
-//    else
-//        buf[1] = 0x00;
-//    
-//    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-//    [ble write:data];
-//}
-//
-//// PWM slide will call this to send its value to Arduino
-//-(IBAction)sendPWM:(id)sender
-//{
-//    UInt8 buf[3] = {0x02, 0x00, 0x00};
-//    
-//    buf[1] = sldPWM.value;
-//    buf[2] = (int)sldPWM.value >> 8;
-//    
-//    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-//    [ble write:data];
-//}
+- (void)motionController:(MABMotionController *)motionController didUpdateSteering:(CGFloat)steering throttle:(CGFloat)throttle;
+{
+    CGFloat left;
+    CGFloat right;
+    CGFloat forward;
+    CGFloat back;
+ 
+    left = steering < 0 ? fabsf(steering) : 0;
+    right = steering > 0 ? fabsf(steering) : 0;
+    forward = throttle > 0 ? fabsf(throttle) : 0;
+    back = throttle < 0 ? fabsf(throttle) : 0;
+    
+    [[MABBluetoothController instance] updateForLeft:left right:right forward:forward back:back];
+}
 
 @end

@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *discoveredPeripheral;
+@property (strong, nonatomic) CBCharacteristic *writeCharacteristic;
 @property (strong, nonatomic) NSMutableData *incomingData;
 
 @end
@@ -57,7 +58,21 @@
 
 - (void)updateForLeft:(CGFloat)leftImpulse right:(CGFloat)rightImpulse forward:(CGFloat)forwardImpulse back:(CGFloat)backImpulse
 {
+    NSData *controlData;
+    UInt8 buf[4] = {0x00, 0x00, 0x00};
     
+    NSLog(@"SENDING DATA:\nleft:%f\nright:%f\nforward:%f\nback:%f\n",leftImpulse, rightImpulse, forwardImpulse, backImpulse);
+    
+    buf[0] = (int)(leftImpulse*255);
+    buf[1] = (int)(rightImpulse*255);
+    buf[2] = (int)(forwardImpulse*255);
+    buf[3] = (int)(backImpulse*255);
+    
+    controlData = [[NSData alloc] initWithBytes:buf length:4];
+    
+    if ( self.writeCharacteristic ) {
+        [self.discoveredPeripheral writeValue:controlData forCharacteristic:self.writeCharacteristic type:1];
+    }
 }
 
 - (void)connect;
@@ -179,7 +194,7 @@
     
     // Loop through the newly filled peripheral.services array, just in case there's more than one.
     for (CBService *service in peripheral.services) {
-        [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:RBL_CHAR_TX_UUID]] forService:service];
+        [peripheral discoverCharacteristics:nil forService:service];
     }
 }
 
@@ -205,6 +220,9 @@
             // If it is, subscribe to it
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             NSLog(@"%@",characteristic);
+        } else if ( [characteristic.UUID isEqual:[CBUUID UUIDWithString:RBL_CHAR_RX_UUID]] ) {
+            NSLog(@"%@",characteristic);
+            self.writeCharacteristic = characteristic;
         }
     }
     

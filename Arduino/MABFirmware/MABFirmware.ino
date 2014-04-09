@@ -4,10 +4,10 @@
 #include <ble_shield.h>
 #include <services.h> 
 
-const int fowardPin = 7;
-const int backwardPin = 6;
-const int leftPin = 5;
-const int rightPin = 4;
+const int fowardPin = 3;
+const int backwardPin = 5;
+const int leftPin = 10;
+const int rightPin = 6;
 
 unsigned char buf[16] = {0};
 unsigned char len = 0;
@@ -25,26 +25,17 @@ void setup()
 
 void loop()
 {
-//  while ( ble_available() )
-//    Serial.write(ble_read());
-//
-//  while ( Serial.available() )
-//  {
-//    unsigned char c = Serial.read();    
-//    if (c != 0x0A)
-//    {
-//      if (len < 16)
-//        buf[len++] = c;
-//    }
-//    else
-//    {
-//      buf[len++] = 0x0A;
-//      
-//      for (int i = 0; i < len; i++)
-//        ble_write(buf[i]);
-//      len = 0;
-//    }
-//  }
+  while ( ble_available() ) {
+    byte left = ble_read();
+    byte right = ble_read();
+    byte forward = ble_read();
+    byte back = ble_read();
+    
+    analogWrite(fowardPin, forward);
+    analogWrite(backwardPin, back);
+    analogWrite(leftPin, left);
+    analogWrite(rightPin, right);
+  }
   
   ble_do_events();
 }
