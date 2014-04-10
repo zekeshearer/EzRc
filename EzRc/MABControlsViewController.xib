@@ -7,11 +7,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MABControlsViewController">
             <connections>
                 <outlet property="backButton" destination="Xvg-Xz-vzq" id="3jE-Ph-i36"/>
+                <outlet property="bottomContainer" destination="HUo-yh-kc7" id="c0A-M8-Tua"/>
+                <outlet property="bottomLeftView" destination="bkF-v9-F1g" id="dYT-9X-fpH"/>
+                <outlet property="bottomRightView" destination="KgM-oU-ZjX" id="qAL-iU-ypc"/>
                 <outlet property="connectButton" destination="k0Q-um-NH4" id="keW-xT-N0C"/>
                 <outlet property="forwardButton" destination="BqR-BT-evA" id="K2N-Kh-1JT"/>
                 <outlet property="goButton" destination="MRI-d5-vXp" id="k9K-KT-Zui"/>
+                <outlet property="leftBottomView" destination="vTC-Q2-CRm" id="T28-pA-ibt"/>
+                <outlet property="leftContainer" destination="rhH-bh-jRy" id="0Oi-jy-T5U"/>
+                <outlet property="leftTopView" destination="JpM-lF-7GN" id="NLc-Kn-qHz"/>
                 <outlet property="progressContainerView" destination="nfL-ch-ZQ6" id="vWT-S0-LqE"/>
                 <outlet property="progressView" destination="hli-dm-ki3" id="93I-fK-KPT"/>
+                <outlet property="rightBottomView" destination="meJ-eZ-EUL" id="sWr-LL-me4"/>
+                <outlet property="rightContainer" destination="nCC-lx-Dsy" id="SR4-hf-Z6W"/>
+                <outlet property="rightTopView" destination="VZv-6Y-or1" id="6Co-9R-HuM"/>
+                <outlet property="topContainer" destination="krQ-rH-imN" id="doG-aE-507"/>
+                <outlet property="topLeftView" destination="JRj-Of-AMZ" id="Iyp-AU-U3J"/>
+                <outlet property="topRightView" destination="zrn-af-WG2" id="SXZ-3p-64E"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -59,7 +71,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="nfL-ch-ZQ6">
-                    <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                    <rect key="frame" x="0.0" y="1000" width="568" height="320"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="hli-dm-ki3">
@@ -83,6 +95,74 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.6156956658291457" green="0.6156956658291457" blue="0.6156956658291457" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="krQ-rH-imN" userLabel="Top">
+                    <rect key="frame" x="30" y="0.0" width="508" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="JRj-Of-AMZ">
+                            <rect key="frame" x="0.0" y="0.0" width="254" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="zrn-af-WG2">
+                            <rect key="frame" x="254" y="0.0" width="254" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.95380930659999996" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="rhH-bh-jRy" userLabel="Left">
+                    <rect key="frame" x="0.0" y="0.0" width="29" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="JpM-lF-7GN">
+                            <rect key="frame" x="0.0" y="0.0" width="29" height="160"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.34509804840000002" green="0.7254902124" blue="0.46666669849999998" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="vTC-Q2-CRm">
+                            <rect key="frame" x="0.0" y="160" width="29" height="160"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.98431378599999997" green="0.1960784495" blue="0.1764705926" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.95380930659999996" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="nCC-lx-Dsy" userLabel="Right">
+                    <rect key="frame" x="539" y="0.0" width="29" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="VZv-6Y-or1">
+                            <rect key="frame" x="0.0" y="0.0" width="29" height="160"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.34509804840000002" green="0.7254902124" blue="0.46666669849999998" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="meJ-eZ-EUL">
+                            <rect key="frame" x="0.0" y="160" width="29" height="160"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.98431378599999997" green="0.1960784495" blue="0.1764705926" alpha="1" colorSpace="deviceRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.95380930659999996" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="HUo-yh-kc7" userLabel="Bottom">
+                    <rect key="frame" x="30" y="290" width="508" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="bkF-v9-F1g">
+                            <rect key="frame" x="0.0" y="0.0" width="254" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" id="KgM-oU-ZjX">
+                            <rect key="frame" x="254" y="0.0" width="254" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.95380930659999996" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.95380930656934315" alpha="1" colorSpace="calibratedWhite"/>

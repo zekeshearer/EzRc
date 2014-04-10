@@ -9,18 +9,31 @@
 #import "MABControlsViewController.h"
 #import "MABMotionController.h"
 #import "MABBluetoothController.h"
+#import "UIView+FrameAdditions.h"
 
 @interface MABControlsViewController ()<MABMotionControllerDelegate>
 
 @property (nonatomic, assign) BOOL isMotioning;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
-
 @property (weak, nonatomic) IBOutlet UIView *progressContainerView;
 @property (weak, nonatomic) IBOutlet UIView *progressView;
-
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+@property (weak, nonatomic) IBOutlet UIView *topContainer;
+@property (weak, nonatomic) IBOutlet UIView *topLeftView;
+@property (weak, nonatomic) IBOutlet UIView *topRightView;
+@property (weak, nonatomic) IBOutlet UIView *bottomContainer;
+@property (weak, nonatomic) IBOutlet UIView *bottomLeftView;
+@property (weak, nonatomic) IBOutlet UIView *bottomRightView;
+@property (weak, nonatomic) IBOutlet UIView *leftContainer;
+@property (weak, nonatomic) IBOutlet UIView *leftTopView;
+@property (weak, nonatomic) IBOutlet UIView *leftBottomView;
+@property (weak, nonatomic) IBOutlet UIView *rightContainer;
+@property (weak, nonatomic) IBOutlet UIView *rightTopView;
+@property (weak, nonatomic) IBOutlet UIView *rightBottomView;
+
 
 @end
 
@@ -41,7 +54,13 @@
     self.progressContainerView.alpha = 0;
     self.progressView.layer.borderWidth = 1;
     self.progressView.layer.cornerRadius = 5;
+    [self updateMetersForLeft:0 right:0 forward:0 back:0];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +73,7 @@
 {
     if ( self.isMotioning ) {
         [[MABMotionController instance] stopUpdates];
+        [self updateMetersForLeft:0 right:0 forward:0 back:0];
     } else {
         [[MABMotionController instance] startUpdates];
         [MABMotionController instance].delegate = self;
@@ -133,16 +153,41 @@
     forward = throttle > 0 ? fabsf(throttle) : 0;
     back = throttle < 0 ? fabsf(throttle) : 0;
     
-    if ( self.forwardButton.state == UIControlStateHighlighted ) {
-        forward = 1;
-        back = 0;
-    }
     if ( self.backButton.state == UIControlStateHighlighted ) {
         forward = 0;
         back = 1;
     }
+    if ( self.forwardButton.state == UIControlStateHighlighted ) {
+        forward = 1;
+        back = 0;
+    }
     
+    [self updateMetersForLeft:left right:right forward:forward back:back];
     [[MABBluetoothController instance] updateForLeft:left right:right forward:forward back:back];
+}
+
+- (void)updateMetersForLeft:(CGFloat)left right:(CGFloat)right forward:(CGFloat)forward back:(CGFloat)back
+{
+    CGFloat horizontalMid;
+    CGFloat verticalMid;
+    
+    horizontalMid = self.topContainer.bounds.size.width/2;
+    verticalMid = self.leftContainer.bounds.size.height/2;
+    
+    [UIView animateWithDuration:.1 animations:^{
+        [self.topLeftView setWidth:left*horizontalMid];
+        [self.topLeftView setXOrigin:horizontalMid-left*horizontalMid];
+        [self.bottomLeftView setWidth:left*horizontalMid];
+        [self.bottomLeftView setXOrigin:horizontalMid-left*horizontalMid];
+        [self.topRightView setWidth:right*horizontalMid];
+        [self.bottomRightView setWidth:right*horizontalMid];
+        [self.leftTopView setHeight:forward*verticalMid];
+        [self.leftTopView setYOrigin:verticalMid-forward*verticalMid];
+        [self.rightTopView setHeight:forward*verticalMid];
+        [self.rightTopView setYOrigin:verticalMid-forward*verticalMid];
+        [self.leftBottomView setHeight:back*verticalMid];
+        [self.rightBottomView setHeight:back*verticalMid];
+    }];
 }
 
 @end

@@ -25,6 +25,7 @@
 		B33CD54C18EA6C4D00FE212E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B33CD54B18EA6C4D00FE212E /* CoreMotion.framework */; };
 		B3EA24E818F0F0AB00B857B1 /* MABBluetoothController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EA24E718F0F0AB00B857B1 /* MABBluetoothController.m */; };
 		B3EA24F018F103F900B857B1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3EA24EF18F103F900B857B1 /* CoreBluetooth.framework */; };
+		B3FFEF5F18F64116004B71A9 /* UIView+FrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FFEF5E18F64116004B71A9 /* UIView+FrameAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		B3EA24E718F0F0AB00B857B1 /* MABBluetoothController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABBluetoothController.m; sourceTree = "<group>"; };
 		B3EA24ED18F0F10100B857B1 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		B3EA24EF18F103F900B857B1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		B3FFEF5D18F64116004B71A9 /* UIView+FrameAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameAdditions.h"; sourceTree = "<group>"; };
+		B3FFEF5E18F64116004B71A9 /* UIView+FrameAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,7 @@
 		B33CD51818EA678200FE212E /* EzRc */ = {
 			isa = PBXGroup;
 			children = (
+				B3FFEF5C18F640E7004B71A9 /* Categories */,
 				B33CD54218EA67BA00FE212E /* Controllers */,
 				B33CD54118EA67AF00FE212E /* ViewControllers */,
 				B33CD52418EA678200FE212E /* Images.xcassets */,
@@ -203,6 +207,15 @@
 				B3EA24ED18F0F10100B857B1 /* BLEDefines.h */,
 			);
 			path = BLE;
+			sourceTree = "<group>";
+		};
+		B3FFEF5C18F640E7004B71A9 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B3FFEF5D18F64116004B71A9 /* UIView+FrameAdditions.h */,
+				B3FFEF5E18F64116004B71A9 /* UIView+FrameAdditions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +317,7 @@
 			files = (
 				B33CD51F18EA678200FE212E /* main.m in Sources */,
 				B33CD54618EA681300FE212E /* MABControlsViewController.m in Sources */,
+				B3FFEF5F18F64116004B71A9 /* UIView+FrameAdditions.m in Sources */,
 				B33CD54A18EA6B5600FE212E /* MABMotionController.m in Sources */,
 				B3EA24E818F0F0AB00B857B1 /* MABBluetoothController.m in Sources */,
 				B33CD52318EA678200FE212E /* MABAppDelegate.m in Sources */,
