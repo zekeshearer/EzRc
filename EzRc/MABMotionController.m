@@ -31,7 +31,7 @@ static CGFloat MABWiggleRoom = .2;
     self = [super init];
     if ( self ) {
         self.motionManager = [[CMMotionManager alloc] init];
-        self.motionManager.deviceMotionUpdateInterval = .05;
+        self.motionManager.deviceMotionUpdateInterval = .1;
     }
     return self;
 }
@@ -55,20 +55,20 @@ static CGFloat MABWiggleRoom = .2;
             
             if ( rollRads < -M_PI_2 - MABWiggleRoom ) {
                 //reverse
-                throttlePercent = -fabsf(rollRads / (M_PI-MABWiggleRoom));
+                throttlePercent = -fabsf((rollRads) / (M_PI)) - .25;
             } else if ( rollRads > -M_PI_2 + MABWiggleRoom ) {
                 //forward
-                throttlePercent =  fabsf(rollRads-M_PI_2 / (-M_PI_2+MABWiggleRoom));
+                throttlePercent =  fabsf(rollRads- M_PI / (-M_PI_2));
             } else {
                 throttlePercent = 0;
             }
             
             if ( pitchRads > MABWiggleRoom ) {
                 //left
-                steeringPercent = pitchRads / (M_PI_2-MABWiggleRoom);
+                steeringPercent = pitchRads / (M_PI_4-MABWiggleRoom);
             } else if ( pitchRads < -MABWiggleRoom ) {
                 //right
-                steeringPercent = pitchRads / (M_PI_2-MABWiggleRoom);
+                steeringPercent = pitchRads / (M_PI_4-MABWiggleRoom);
             } else {
                 steeringPercent = 0;
             }

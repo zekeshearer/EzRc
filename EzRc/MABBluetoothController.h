@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *MABDeviceConnectedNotification;
+extern NSString *MABDeviceConnectionFailedNotifiction;
+
 typedef enum {
     MABSteeringInputStraight,
     MABSteeringInputLeft,
@@ -27,6 +30,7 @@ typedef enum {
 - (BOOL)isConnected;
 - (void)connect;
 - (void)disconnect;
+- (void)cancelScan;
 
 //booleanDigital
 - (void)updateForSteering:(MABSteeringInput)steeringInput acceleration:(MABAccelerationInput)acceleration;

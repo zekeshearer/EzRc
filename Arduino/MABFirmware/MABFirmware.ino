@@ -15,7 +15,6 @@ unsigned char len = 0;
 void setup() 
 {
   ble_begin();
-  Serial.begin(57600);
   
   pinMode(fowardPin, OUTPUT);
   pinMode(backwardPin, OUTPUT);

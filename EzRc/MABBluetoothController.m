@@ -10,6 +10,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BLEDefines.h"
 
+NSString *MABDeviceConnectedNotification = @"MABDeviceConnectedNotification";
+NSString *MABDeviceConnectionFailedNotifiction = @"MABDeviceConnectionFailedNotifiction";
 
 @interface MABBluetoothController () <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -17,6 +19,7 @@
 @property (strong, nonatomic) CBPeripheral *discoveredPeripheral;
 @property (strong, nonatomic) CBCharacteristic *writeCharacteristic;
 @property (strong, nonatomic) NSMutableData *incomingData;
+@property (strong, nonatomic) NSTimer *deviceSearchTimer;
 
 @end
 
@@ -82,7 +85,22 @@
 
 - (void)disconnect;
 {
-    [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
+    if ( self.discoveredPeripheral ) {
+        [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
+    }
+}
+
+- (void)deviceSearchTimedOut:(NSTimer *)timer
+{
+    [self cancelScan];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:MABDeviceConnectionFailedNotifiction object:nil]];
+}
+
+- (void)cancelScan
+{
+    NSLog(@"Scanning timed out");
+    [self disconnect];
+    [self.centralManager stopScan];
 }
 
 #pragma mark - Central Manager Delegate
@@ -111,10 +129,8 @@
  */
 - (void)scan
 {
+    self.deviceSearchTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(deviceSearchTimedOut:) userInfo:nil repeats:NO];
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:RBL_SERVICE_UUID]] options:nil];
-    
-  
-    
     NSLog(@"Scanning started");
 }
 
@@ -166,7 +182,10 @@
     NSLog(@"Peripheral Connected");
     
     // Stop scanning
+    [self.deviceSearchTimer invalidate];
+    self.deviceSearchTimer = nil;
     [self.centralManager stopScan];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:MABDeviceConnectedNotification object:nil]];
     NSLog(@"Scanning stopped");
     
     // Clear the data that we may already have
